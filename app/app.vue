@@ -3,12 +3,11 @@
     <Navbar />
     <Banner />
 
-    <!-- Main Content -->
     <main class="main-content">
       <NuxtPage />
     </main>
 
-    <!-- Side Popup Contact -->
+    <Footer />
     <PopupContract />
   </div>
 </template>

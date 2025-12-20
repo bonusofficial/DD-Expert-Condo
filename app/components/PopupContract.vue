@@ -189,9 +189,20 @@ const socialItems = [
   transform: scale(1.15);
 }
 
-.social-btn svg {
+.social-btn :deep(svg) {
   width: 24px;
   height: 24px;
+  fill: currentColor;
+}
+
+.social-btn :deep(svg path) {
+  fill: currentColor;
+}
+
+.btn-call :deep(svg) {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
 }
 
 /* Call Button */
