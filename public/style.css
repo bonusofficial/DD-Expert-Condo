@@ -1,7 +1,7 @@
-@import 'https://cdn.jsdelivr.net/gh/lazywasabi/thai-web-fonts@7/fonts/Sarabun/Sarabun.css';
+@import 'https://cdn.jsdelivr.net/gh/lazywasabi/thai-web-fonts@7/fonts/Anuphan/var/Anuphan[wght].css';
 @import "tailwindcss";
 *{
-    font-family: 'Sarabun', sans-serif;
+   font-family: 'Anuphan', sans-serif;
 }
 .title {
     font-weight: bold;

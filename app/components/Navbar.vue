@@ -13,25 +13,45 @@
               <span class="lang-flag">{{ currentLanguage.flag }}</span>
               <span class="lang-name">{{ currentLanguage.name }}</span>
               <span class="lang-currency">{{ currentLanguage.currency }}</span>
-              <svg class="dropdown-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polyline points="6 9 12 15 18 9"/>
+              <svg
+                class="dropdown-arrow"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <polyline points="6 9 12 15 18 9" />
               </svg>
             </button>
             <div class="lang-dropdown-menu">
               <button
                 v-for="lang in languages"
                 :key="lang.code"
-                :class="['lang-dropdown-item', { active: currentLang === lang.code }]"
+                :class="[
+                  'lang-dropdown-item',
+                  { active: currentLang === lang.code },
+                ]"
                 @click="selectLang(lang.code)"
               >
                 <span class="lang-flag">{{ lang.flag }}</span>
                 <div class="lang-info">
                   <span class="lang-name">{{ lang.name }}</span>
-                  <span class="lang-currency-name">{{ lang.currencyName }}</span>
+                  <span class="lang-currency-name">{{
+                    lang.currencyName
+                  }}</span>
                 </div>
                 <span class="lang-currency-code">{{ lang.currency }}</span>
-                <svg v-if="currentLang === lang.code" class="lang-check" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                  <polyline points="20 6 9 17 4 12"/>
+                <svg
+                  v-if="currentLang === lang.code"
+                  class="lang-check"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="3"
+                >
+                  <polyline points="20 6 9 17 4 12" />
                 </svg>
               </button>
             </div>
@@ -296,13 +316,47 @@ const isLangDropdownOpen = ref(false);
 
 const languages = [
   { code: "th", name: "ไทย", flag: "🇹🇭", currency: "THB", currencyName: "บาท" },
-  { code: "en", name: "English", flag: "��", currency: "USD", currencyName: "US Dollar" },
-  { code: "jp", name: "日本語", flag: "��", currency: "JPY", currencyName: "円 (Yen)" },
-  { code: "cn", name: "中文", flag: "��", currency: "CNY", currencyName: "元 (Yuan)" },
+  {
+    code: "en",
+    name: "English",
+    flag: "🇺🇸",
+    currency: "USD",
+    currencyName: "US Dollar",
+  },
+  {
+    code: "jp",
+    name: "日本語",
+    flag: "🇯🇵",
+    currency: "JPY",
+    currencyName: "円 (Yen)",
+  },
+  {
+    code: "cn",
+    name: "中文",
+    flag: "🇨🇳",
+    currency: "CNY",
+    currencyName: "元 (Yuan)",
+  },
+  {
+    code: "mm",
+    name: "မြန်မာ",
+    flag: "🇲🇲",
+    currency: "MMK",
+    currencyName: "ကျပ် (Kyat)",
+  },
+  {
+    code: "la",
+    name: "ລາວ",
+    flag: "🇱🇦",
+    currency: "LAK",
+    currencyName: "ກີບ (Kip)",
+  },
 ];
 
 const currentLanguage = computed(() => {
-  return languages.find(lang => lang.code === currentLang.value) || languages[0];
+  return (
+    languages.find((lang) => lang.code === currentLang.value) || languages[0]
+  );
 });
 
 const toggleLangDropdown = () => {
@@ -316,20 +370,20 @@ const selectLang = (code) => {
 
 // Close dropdown when clicking outside
 const closeLangDropdown = (e) => {
-  if (!e.target.closest('.lang-dropdown')) {
+  if (!e.target.closest(".lang-dropdown")) {
     isLangDropdownOpen.value = false;
   }
 };
 
 onMounted(() => {
-  if (typeof window !== 'undefined') {
-    document.addEventListener('click', closeLangDropdown);
+  if (typeof window !== "undefined") {
+    document.addEventListener("click", closeLangDropdown);
   }
 });
 
 onUnmounted(() => {
-  if (typeof window !== 'undefined') {
-    document.removeEventListener('click', closeLangDropdown);
+  if (typeof window !== "undefined") {
+    document.removeEventListener("click", closeLangDropdown);
   }
 });
 
@@ -587,7 +641,11 @@ if (typeof window !== "undefined") {
 }
 
 .lang-dropdown-item.active {
-  background: linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(212, 175, 55, 0.08) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(212, 175, 55, 0.15) 0%,
+    rgba(212, 175, 55, 0.08) 100%
+  );
 }
 
 .lang-dropdown-item .lang-flag {

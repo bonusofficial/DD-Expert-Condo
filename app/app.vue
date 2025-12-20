@@ -7,6 +7,9 @@
     <main class="main-content">
       <NuxtPage />
     </main>
+
+    <!-- Side Popup Contact -->
+    <PopupContract />
   </div>
 </template>
 

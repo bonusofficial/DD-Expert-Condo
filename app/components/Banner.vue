@@ -1,12 +1,7 @@
 <template>
   <section class="banner-section">
     <Swiper
-      :modules="[
-        SwiperAutoplay,
-        SwiperPagination,
-        SwiperNavigation,
-        SwiperEffectFade,
-      ]"
+      :modules="[SwiperAutoplay, SwiperPagination, SwiperEffectFade]"
       :slides-per-view="1"
       :loop="true"
       :autoplay="{
@@ -18,7 +13,6 @@
         clickable: true,
         dynamicBullets: true,
       }"
-      :navigation="true"
       :effect="'fade'"
       :fadeEffect="{ crossFade: true }"
       class="banner-swiper"
@@ -27,59 +21,32 @@
       <SwiperSlide v-for="(slide, index) in slides" :key="index">
         <!-- Image Slide -->
         <div v-if="slide.type === 'image'" class="slide-content">
-          <img :src="slide.src" :alt="slide.title" class="slide-image" />
-          <div class="slide-overlay"></div>
-          <div class="slide-caption">
-            <span class="slide-tag" v-if="slide.tag">{{ slide.tag }}</span>
-            <h2 class="slide-title">{{ slide.title }}</h2>
-            <p class="slide-description">{{ slide.description }}</p>
-            <NuxtLink v-if="slide.link" :to="slide.link" class="slide-btn">
-              {{ slide.buttonText || "ดูรายละเอียด" }}
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path d="M5 12h14M12 5l7 7-7 7" />
-              </svg>
-            </NuxtLink>
-          </div>
+          <img :src="slide.src" :alt="slide.alt || ''" class="slide-image" />
         </div>
 
         <!-- Video Slide (YouTube) -->
         <div
           v-else-if="slide.type === 'youtube'"
           class="slide-content video-slide"
+          @click="playVideo(index)"
         >
-          <div class="video-wrapper">
-            <iframe
-              :src="getYoutubeEmbedUrl(slide.src)"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-            ></iframe>
-          </div>
-          <div class="slide-overlay video-overlay"></div>
-          <div class="slide-caption">
-            <span class="slide-tag" v-if="slide.tag">{{ slide.tag }}</span>
-            <h2 class="slide-title">{{ slide.title }}</h2>
-            <p class="slide-description">{{ slide.description }}</p>
-            <button
-              v-if="slide.src"
-              class="slide-btn play-btn"
-              @click="playVideo(index)"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-              >
-                <path d="M8 5v14l11-7z" />
-              </svg>
-              ดูวิดีโอ
-            </button>
+          <div class="video-thumbnail">
+            <img
+              :src="getYoutubeThumbnail(slide.src)"
+              :alt="slide.alt || ''"
+              class="slide-image"
+            />
+            <div class="play-overlay">
+              <div class="play-icon">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -96,25 +63,8 @@
             muted
             loop
             playsinline
+            autoplay
           ></video>
-          <div class="slide-overlay"></div>
-          <div class="slide-caption">
-            <span class="slide-tag" v-if="slide.tag">{{ slide.tag }}</span>
-            <h2 class="slide-title">{{ slide.title }}</h2>
-            <p class="slide-description">{{ slide.description }}</p>
-            <NuxtLink v-if="slide.link" :to="slide.link" class="slide-btn">
-              {{ slide.buttonText || "ดูรายละเอียด" }}
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path d="M5 12h14M12 5l7 7-7 7" />
-              </svg>
-            </NuxtLink>
-          </div>
         </div>
       </SwiperSlide>
     </Swiper>
@@ -159,7 +109,6 @@ import { Swiper, SwiperSlide } from "swiper/vue";
 import {
   Autoplay as SwiperAutoplay,
   Pagination as SwiperPagination,
-  Navigation as SwiperNavigation,
   EffectFade as SwiperEffectFade,
 } from "swiper/modules";
 
@@ -230,6 +179,18 @@ const getYoutubeEmbedUrl = (url) => {
     return `https://www.youtube.com/embed/${videoId[1]}?rel=0&modestbranding=1`;
   }
   return url;
+};
+
+// Get YouTube thumbnail URL
+const getYoutubeThumbnail = (url) => {
+  if (!url) return "";
+  const videoId = url.match(
+    /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/
+  );
+  if (videoId && videoId[1]) {
+    return `https://img.youtube.com/vi/${videoId[1]}/maxresdefault.jpg`;
+  }
+  return "";
 };
 
 // Get YouTube embed URL with autoplay
@@ -321,6 +282,54 @@ onMounted(() => {
   height: 100%;
   object-fit: cover;
   object-position: center;
+}
+
+.video-thumbnail {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.play-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.video-thumbnail:hover .play-overlay {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.play-icon {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #d4af37 0%, #b8860b 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 30px rgba(212, 175, 55, 0.5);
+  transition: all 0.3s ease;
+}
+
+.video-thumbnail:hover .play-icon {
+  transform: scale(1.1);
+  box-shadow: 0 12px 40px rgba(212, 175, 55, 0.6);
+}
+
+.play-icon svg {
+  width: 35px;
+  height: 35px;
+  color: #fff;
+  margin-left: 5px;
 }
 
 .video-wrapper {
