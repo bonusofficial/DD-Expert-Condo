@@ -1,0 +1,94 @@
+@import 'https://cdn.jsdelivr.net/gh/lazywasabi/thai-web-fonts@7/fonts/Sarabun/Sarabun.css';
+@import "tailwindcss";
+*{
+    font-family: 'Sarabun', sans-serif;
+}
+.title {
+    font-weight: bold;
+}
+.logo-img {
+    width: 100px;
+}
+
+/* Swiper Global Styles */
+.banner-swiper .swiper-button-prev,
+.banner-swiper .swiper-button-next {
+    width: 50px !important;
+    height: 50px !important;
+    background: rgba(255, 255, 255, 0.15) !important;
+    backdrop-filter: blur(10px);
+    border-radius: 50% !important;
+    transition: all 0.3s ease !important;
+}
+
+.banner-swiper .swiper-button-prev:hover,
+.banner-swiper .swiper-button-next:hover {
+    background: #d4af37 !important;
+}
+
+.banner-swiper .swiper-button-prev::after,
+.banner-swiper .swiper-button-next::after {
+    font-size: 18px !important;
+    font-weight: 700 !important;
+    color: #fff !important;
+}
+
+.banner-swiper .swiper-button-prev {
+    left: 25px !important;
+}
+
+.banner-swiper .swiper-button-next {
+    right: 25px !important;
+}
+
+.banner-swiper .swiper-pagination {
+    bottom: 25px !important;
+}
+
+.banner-swiper .swiper-pagination-bullet {
+    width: 12px !important;
+    height: 12px !important;
+    background: rgba(255, 255, 255, 0.5) !important;
+    opacity: 1 !important;
+    transition: all 0.3s ease !important;
+}
+
+.banner-swiper .swiper-pagination-bullet-active {
+    background: #d4af37 !important;
+    width: 35px !important;
+    border-radius: 6px !important;
+}
+
+/* Responsive for Swiper */
+@media (max-width: 991px) {
+    .banner-swiper .swiper-button-prev,
+    .banner-swiper .swiper-button-next {
+        width: 40px !important;
+        height: 40px !important;
+    }
+    
+    .banner-swiper .swiper-button-prev::after,
+    .banner-swiper .swiper-button-next::after {
+        font-size: 14px !important;
+    }
+}
+
+@media (max-width: 767px) {
+    .banner-swiper .swiper-button-prev,
+    .banner-swiper .swiper-button-next {
+        display: none !important;
+    }
+    
+    .banner-swiper .swiper-pagination {
+        bottom: 15px !important;
+    }
+    
+    .banner-swiper .swiper-pagination-bullet {
+        width: 10px !important;
+        height: 10px !important;
+    }
+    
+    .banner-swiper .swiper-pagination-bullet-active {
+        width: 28px !important;
+    }
+}
