@@ -2,6 +2,15 @@
   <div class="app-wrapper">
     <Navbar />
     <Banner />
+    
+    <!-- Home Page Sections -->
+    <PropertyCategories />
+    <ServicesSection />
+    <FeaturedProperties />
+    <VideoShowcase />
+    <AdsPartners />
+    <Announcements />
+    <PartnersSection />
 
     <main class="main-content">
       <NuxtPage />

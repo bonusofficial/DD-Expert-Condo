@@ -1,14 +1,44 @@
 <template>
   <header class="header">
-    <!-- Top Bar - Language & Quick Links -->
-    <div class="top-bar">
-      <div class="top-bar-container">
-        <div class="top-bar-left">
-          <span class="welcome-text">ยินดีต้อนรับสู่ DD Expert Condo</span>
+    <!-- Navigation Bar with Logo -->
+    <nav class="nav-bar">
+      <div class="nav-container">
+        <!-- Logo in Nav -->
+        <div class="nav-logo">
+          <NuxtLink to="/" class="logo">
+            <img src="/logo.png" class="logo-img" alt="DDexpert" />
+          </NuxtLink>
         </div>
-        <div class="top-bar-right">
+
+        <!-- Navigation Menu -->
+        <ul class="nav-menu">
+          <li v-for="item in menuItems" :key="item.name" class="nav-item">
+            <NuxtLink :to="item.link" class="nav-link">
+              <span class="nav-icon" v-html="item.icon"></span>
+              {{ item.name }}
+            </NuxtLink>
+          </li>
+        </ul>
+
+        <!-- Nav Actions (Right Side) -->
+        <div class="nav-actions">
+          <!-- Search Trigger Button -->
+          <button class="search-trigger" @click="openSearchModal">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <circle cx="11" cy="11" r="8" />
+              <path d="m21 21-4.35-4.35" />
+            </svg>
+            <span class="search-trigger-text">ค้นหา</span>
+          </button>
+
           <!-- Language & Currency Dropdown -->
-          <div class="lang-dropdown" :class="{ open: isLangDropdownOpen }">
+          <div class="lang-dropdown nav-lang-dropdown" :class="{ open: isLangDropdownOpen }">
             <button class="lang-dropdown-trigger" @click="toggleLangDropdown">
               <span class="lang-flag">{{ currentLanguage.flag }}</span>
               <span class="lang-name">{{ currentLanguage.name }}</span>
@@ -56,61 +86,24 @@
               </button>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
 
-    <!-- Navigation Bar with Logo -->
-    <nav class="nav-bar">
-      <div class="nav-container">
-        <!-- Logo in Nav -->
-        <div class="nav-logo">
-          <NuxtLink to="/" class="logo">
-            <img src="/logo.png" class="logo-img" alt="DDexpert" />
-          </NuxtLink>
-        </div>
-
-        <!-- Navigation Menu -->
-        <ul class="nav-menu">
-          <li v-for="item in menuItems" :key="item.name" class="nav-item">
-            <NuxtLink :to="item.link" class="nav-link">
-              <span class="nav-icon" v-html="item.icon"></span>
-              {{ item.name }}
-            </NuxtLink>
-          </li>
-        </ul>
-
-        <!-- Search Trigger Button -->
-        <button class="search-trigger" @click="openSearchModal">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-          >
-            <circle cx="11" cy="11" r="8" />
-            <path d="m21 21-4.35-4.35" />
-          </svg>
-          <span class="search-trigger-text">ค้นหา</span>
-        </button>
-
-        <!-- Contact Info -->
-        <div class="nav-contact">
-          <a href="tel:02-XXX-XXXX" class="contact-link">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path
-                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
-              />
-            </svg>
-            <span>02-XXX-XXXX</span>
-          </a>
+          <!-- Contact Info -->
+          <div class="nav-contact">
+            <a href="tel:02-XXX-XXXX" class="contact-link">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+                />
+              </svg>
+              <span>02-XXX-XXXX</span>
+            </a>
+          </div>
         </div>
 
         <!-- Mobile Menu Toggle -->
@@ -152,6 +145,23 @@
           </NuxtLink>
         </li>
       </ul>
+
+      <!-- Mobile Language Selector -->
+      <div class="mobile-lang-section">
+        <span class="mobile-section-title">เลือกภาษา / Language</span>
+        <div class="mobile-lang-grid">
+          <button
+            v-for="lang in languages"
+            :key="lang.code"
+            :class="['mobile-lang-btn', { active: currentLang === lang.code }]"
+            @click="selectLang(lang.code)"
+          >
+            <span class="mobile-lang-flag">{{ lang.flag }}</span>
+            <span class="mobile-lang-name">{{ lang.name }}</span>
+            <span class="mobile-lang-currency">{{ lang.currency }}</span>
+          </button>
+        </div>
+      </div>
 
       <!-- Mobile Contact -->
       <div class="mobile-contact">
@@ -521,40 +531,18 @@ if (typeof window !== "undefined") {
   z-index: 1000;
 }
 
-/* Top Bar */
-.top-bar {
-  background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
-  padding: 8px 0;
-  border-bottom: 1px solid rgba(212, 175, 55, 0.3);
-}
-
-.top-bar-container {
-  max-width: 1600px;
-  margin: 0 auto;
-  padding: 0 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.welcome-text {
-  color: #d4af37;
-  font-size: 0.85rem;
-  letter-spacing: 0.5px;
-}
-
-/* Language Dropdown */
+/* Language Dropdown - Navigation Bar Style */
 .lang-dropdown {
   position: relative;
 }
 
-.lang-dropdown-trigger {
+.nav-lang-dropdown .lang-dropdown-trigger {
   display: flex;
   align-items: center;
   gap: 8px;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(212, 175, 55, 0.1);
   border: 1px solid rgba(212, 175, 55, 0.4);
-  color: #fff;
+  color: #2c2c2c;
   padding: 8px 14px;
   border-radius: 8px;
   cursor: pointer;
@@ -562,31 +550,39 @@ if (typeof window !== "undefined") {
   transition: all 0.3s ease;
 }
 
-.lang-dropdown-trigger:hover {
+.nav-lang-dropdown .lang-dropdown-trigger:hover {
   background: rgba(212, 175, 55, 0.2);
   border-color: #d4af37;
 }
 
-.lang-dropdown.open .lang-dropdown-trigger {
+.nav-lang-dropdown.open .lang-dropdown-trigger {
   background: rgba(212, 175, 55, 0.3);
   border-color: #d4af37;
 }
 
-.lang-dropdown-trigger .lang-flag {
+.nav-lang-dropdown .lang-dropdown-trigger .lang-flag {
   font-size: 1.2rem;
 }
 
-.lang-dropdown-trigger .lang-name {
+.nav-lang-dropdown .lang-dropdown-trigger .lang-name {
   font-weight: 500;
+  color: #2c2c2c;
 }
 
-.lang-dropdown-trigger .lang-currency {
-  background: rgba(212, 175, 55, 0.3);
+.nav-lang-dropdown .lang-dropdown-trigger .lang-currency {
+  background: linear-gradient(135deg, #d4af37 0%, #b8860b 100%);
   padding: 2px 8px;
   border-radius: 4px;
   font-size: 0.75rem;
   font-weight: 600;
-  color: #f4e5b2;
+  color: #fff;
+}
+
+.dropdown-arrow {
+  width: 14px;
+  height: 14px;
+  transition: transform 0.3s ease;
+  color: #d4af37;
 }
 
 .dropdown-arrow {
@@ -786,6 +782,14 @@ if (typeof window !== "undefined") {
   color: #d4af37;
 }
 
+/* Nav Actions Container */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
 /* Search Trigger Button */
 .search-trigger {
   display: flex;
@@ -968,6 +972,74 @@ if (typeof window !== "undefined") {
   width: 20px;
   height: 20px;
   color: #d4af37;
+}
+
+/* Mobile Language Section */
+.mobile-lang-section {
+  padding: 15px 20px;
+  border-top: 1px solid rgba(212, 175, 55, 0.15);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+  background: rgba(212, 175, 55, 0.05);
+}
+
+.mobile-section-title {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #8b7d3a;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.mobile-lang-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.mobile-lang-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  background: #fff;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.mobile-lang-btn:hover {
+  background: rgba(212, 175, 55, 0.1);
+  border-color: #d4af37;
+}
+
+.mobile-lang-btn.active {
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(212, 175, 55, 0.08) 100%);
+  border-color: #d4af37;
+  box-shadow: 0 2px 8px rgba(212, 175, 55, 0.2);
+}
+
+.mobile-lang-flag {
+  font-size: 1.3rem;
+}
+
+.mobile-lang-name {
+  flex: 1;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #2c2c2c;
+  text-align: left;
+}
+
+.mobile-lang-currency {
+  background: linear-gradient(135deg, #d4af37 0%, #b8860b 100%);
+  color: #fff;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 700;
 }
 
 .mobile-contact {
@@ -1245,6 +1317,10 @@ if (typeof window !== "undefined") {
     padding: 12px;
     border-radius: 50%;
   }
+
+  .nav-lang-dropdown .lang-dropdown-trigger .lang-name {
+    display: none;
+  }
 }
 
 /* Responsive - Desktop */
@@ -1265,6 +1341,10 @@ if (typeof window !== "undefined") {
   .nav-contact {
     display: none;
   }
+
+  .nav-actions {
+    gap: 8px;
+  }
 }
 
 /* Responsive - Tablet */
@@ -1273,7 +1353,7 @@ if (typeof window !== "undefined") {
     display: none;
   }
 
-  .search-trigger {
+  .nav-actions {
     display: none;
   }
 
@@ -1296,23 +1376,6 @@ if (typeof window !== "undefined") {
 
 /* Responsive - Mobile */
 @media (max-width: 767px) {
-  .top-bar {
-    padding: 6px 0;
-  }
-
-  .top-bar-container {
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .welcome-text {
-    font-size: 0.8rem;
-  }
-
-  .lang-name {
-    display: none;
-  }
-
   .nav-logo .logo-img {
     height: 40px;
   }
@@ -1332,27 +1395,14 @@ if (typeof window !== "undefined") {
   .modal-search-input input {
     font-size: 1rem;
   }
+
+  .mobile-lang-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Responsive - Small Mobile */
 @media (max-width: 575px) {
-  .top-bar {
-    padding: 5px 0;
-  }
-
-  .welcome-text {
-    font-size: 0.75rem;
-    text-align: center;
-  }
-
-  .lang-btn {
-    padding: 3px 6px;
-  }
-
-  .lang-flag {
-    font-size: 0.9rem;
-  }
-
   .nav-container {
     padding: 8px 15px;
   }
