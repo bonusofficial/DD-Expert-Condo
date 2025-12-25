@@ -8,7 +8,7 @@
     <Announcements />
     <PartnersSection />
     <Footer />
-    <PopupContract />
+    <!-- <PopupContract /> -->
   </div>
 </template>
 
