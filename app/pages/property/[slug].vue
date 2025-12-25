@@ -479,12 +479,14 @@ onUnmounted(() => {
 .property-detail-page {
   min-height: 100vh;
   background: #f8f6f0;
+  overflow-x: hidden;
 }
 
 .container {
   max-width: 1400px;
   margin: 0 auto;
   padding: 0 20px;
+  overflow-x: hidden;
 }
 
 /* Property Header */
@@ -607,18 +609,23 @@ onUnmounted(() => {
 /* Main Content Grid */
 .main-content {
   padding: 30px 0 60px;
+  overflow-x: hidden;
 }
 
 .content-grid {
   display: grid;
   grid-template-columns: 1fr 380px;
   gap: 30px;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 .content-left {
   display: flex;
   flex-direction: column;
   gap: 25px;
+  min-width: 0;
+  max-width: 100%;
 }
 
 /* Gallery */
@@ -627,17 +634,21 @@ onUnmounted(() => {
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+  max-width: 100%;
 }
 
 .main-image {
   position: relative;
   aspect-ratio: 16/9;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .main-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  max-width: 100%;
 }
 
 .image-counter {
