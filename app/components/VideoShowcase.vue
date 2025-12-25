@@ -251,7 +251,7 @@ const closeModal = () => {
 
 .section-tag {
   display: inline-block;
-  background: linear-gradient(135deg, #d4af37 0%, #b8860b 100%);
+  background: linear-gradient(135deg, #DAA520 0%, #b8860b 100%);
   color: #fff;
   padding: 8px 20px;
   border-radius: 30px;
@@ -308,8 +308,8 @@ const closeModal = () => {
 }
 
 .tab-btn.active {
-  background: linear-gradient(135deg, #d4af37 0%, #b8860b 100%);
-  border-color: #d4af37;
+  background: linear-gradient(135deg, #DAA520 0%, #b8860b 100%);
+  border-color: #DAA520;
   color: #fff;
 }
 
@@ -371,7 +371,7 @@ const closeModal = () => {
 .play-btn {
   width: 60px;
   height: 60px;
-  background: linear-gradient(135deg, #d4af37 0%, #b8860b 100%);
+  background: linear-gradient(135deg, #DAA520 0%, #b8860b 100%);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -402,7 +402,7 @@ const closeModal = () => {
   position: absolute;
   top: 10px;
   left: 10px;
-  background: linear-gradient(135deg, #d4af37 0%, #b8860b 100%);
+  background: linear-gradient(135deg, #DAA520 0%, #b8860b 100%);
   color: #fff;
   padding: 4px 12px;
   border-radius: 4px;
@@ -456,8 +456,8 @@ const closeModal = () => {
   align-items: center;
   gap: 10px;
   background: transparent;
-  border: 2px solid #d4af37;
-  color: #d4af37;
+  border: 2px solid #DAA520;
+  color: #DAA520;
   padding: 14px 35px;
   border-radius: 50px;
   font-size: 1rem;
@@ -473,7 +473,7 @@ const closeModal = () => {
 }
 
 .view-more-btn:hover {
-  background: linear-gradient(135deg, #d4af37 0%, #b8860b 100%);
+  background: linear-gradient(135deg, #DAA520 0%, #b8860b 100%);
   color: #fff;
 }
 
@@ -538,7 +538,7 @@ const closeModal = () => {
 }
 
 .modal-close:hover {
-  background: #d4af37;
+  background: #DAA520;
 }
 
 .modal-video {

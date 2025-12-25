@@ -101,7 +101,7 @@ const partners = [
 .ad-label {
   display: inline-block;
   background: rgba(212, 175, 55, 0.2);
-  color: #d4af37;
+  color: #DAA520;
   padding: 4px 12px;
   border-radius: 4px;
   font-size: 0.75rem;
@@ -127,7 +127,7 @@ const partners = [
 .ad-btn {
   display: inline-flex;
   align-items: center;
-  background: linear-gradient(135deg, #d4af37 0%, #b8860b 100%);
+  background: linear-gradient(135deg, #DAA520 0%, #b8860b 100%);
   color: #fff;
   padding: 12px 28px;
   border-radius: 50px;
@@ -199,7 +199,7 @@ const partners = [
 }
 
 .ad-overlay span {
-  background: linear-gradient(135deg, #d4af37 0%, #b8860b 100%);
+  background: linear-gradient(135deg, #DAA520 0%, #b8860b 100%);
   color: #fff;
   padding: 10px 20px;
   border-radius: 30px;

@@ -97,7 +97,7 @@ const categories = [
 
 .section-tag {
   display: inline-block;
-  background: linear-gradient(135deg, #d4af37 0%, #b8860b 100%);
+  background: linear-gradient(135deg, #DAA520 0%, #b8860b 100%);
   color: #fff;
   padding: 8px 20px;
   border-radius: 30px;
@@ -221,7 +221,7 @@ const categories = [
 }
 
 .category-card:hover .category-icon {
-  background: #d4af37;
+  background: #DAA520;
 }
 
 .category-icon :deep(svg) {

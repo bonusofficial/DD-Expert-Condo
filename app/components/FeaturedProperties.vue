@@ -216,7 +216,7 @@ const toggleFavorite = (id) => {
 
 .section-tag {
   display: inline-block;
-  background: linear-gradient(135deg, #d4af37 0%, #b8860b 100%);
+  background: linear-gradient(135deg, #DAA520 0%, #b8860b 100%);
   color: #fff;
   padding: 6px 16px;
   border-radius: 20px;
@@ -236,7 +236,7 @@ const toggleFavorite = (id) => {
   display: flex;
   align-items: center;
   gap: 8px;
-  color: #d4af37;
+  color: #DAA520;
   text-decoration: none;
   font-weight: 600;
   font-size: 0.95rem;
@@ -310,7 +310,7 @@ const toggleFavorite = (id) => {
 }
 
 .badge-new {
-  background: #d4af37;
+  background: #DAA520;
   color: #fff;
 }
 
@@ -382,7 +382,7 @@ const toggleFavorite = (id) => {
 .price-current {
   font-size: 1.3rem;
   font-weight: 700;
-  color: #d4af37;
+  color: #DAA520;
 }
 
 .price-sqm {
@@ -414,7 +414,7 @@ const toggleFavorite = (id) => {
 .property-location svg {
   width: 14px;
   height: 14px;
-  color: #d4af37;
+  color: #DAA520;
 }
 
 .property-specs {
@@ -476,7 +476,7 @@ const toggleFavorite = (id) => {
 }
 
 .property-btn:hover {
-  background: linear-gradient(135deg, #d4af37 0%, #b8860b 100%);
+  background: linear-gradient(135deg, #DAA520 0%, #b8860b 100%);
 }
 
 /* Responsive */

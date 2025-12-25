@@ -1,70 +1,30 @@
 <template>
-  <div class="side-popup">
-    <!-- Toggle Button -->
-    <button class="popup-toggle" :class="{ open: isOpen }" @click="togglePopup">
-      <svg
-        v-if="!isOpen"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-      >
-        <path
-          d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
-        />
-      </svg>
-      <svg
-        v-else
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-      >
-        <line x1="18" y1="6" x2="6" y2="18" />
-        <line x1="6" y1="6" x2="18" y2="18" />
-      </svg>
-    </button>
-
-    <!-- Social Buttons -->
-    <transition-group name="social-btn" tag="div" class="social-buttons">
-      <a
-        v-for="(item, index) in socialItems"
-        v-show="isOpen"
-        :key="item.name"
-        :href="item.link"
-        :target="item.external ? '_blank' : '_self'"
-        :class="['social-btn', item.class]"
-        :style="{ transitionDelay: `${index * 0.05}s` }"
-        @mouseenter="activeTooltip = item.name"
-        @mouseleave="activeTooltip = null"
-      >
-        <span v-html="item.icon"></span>
-
-        <!-- Tooltip -->
-        <transition name="tooltip">
-          <div v-if="activeTooltip === item.name" class="tooltip">
-            {{ item.tooltip }}
-          </div>
-        </transition>
-      </a>
-    </transition-group>
+  <div class="floating-contacts">
+    <a
+      v-for="item in socialItems"
+      :key="item.name"
+      :href="item.link"
+      :target="item.external ? '_blank' : '_self'"
+      :class="['contact-btn', item.class]"
+      @mouseenter="activeTooltip = item.name"
+      @mouseleave="activeTooltip = null"
+    >
+      <span v-html="item.icon"></span>
+      
+      <!-- Tooltip -->
+      <transition name="tooltip">
+        <div v-if="activeTooltip === item.name" class="tooltip">
+          {{ item.tooltip }}
+        </div>
+      </transition>
+    </a>
   </div>
 </template>
 
 <script setup>
 import { ref } from "vue";
 
-const isOpen = ref(false);
 const activeTooltip = ref(null);
-
-const togglePopup = () => {
-  isOpen.value = !isOpen.value;
-  if (!isOpen.value) {
-    activeTooltip.value = null;
-  }
-};
 
 const socialItems = [
   {
@@ -121,58 +81,19 @@ const socialItems = [
 </script>
 
 <style scoped>
-.side-popup {
+.floating-contacts {
   position: fixed;
   bottom: 30px;
   right: 30px;
   z-index: 999;
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   align-items: center;
   gap: 12px;
 }
 
-/* Toggle Button */
-.popup-toggle {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #d4af37 0%, #b8860b 100%);
-  border: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 6px 25px rgba(212, 175, 55, 0.4);
-  transition: all 0.3s ease;
-  z-index: 10;
-}
-
-.popup-toggle:hover {
-  transform: scale(1.1);
-  box-shadow: 0 8px 30px rgba(212, 175, 55, 0.5);
-}
-
-.popup-toggle.open {
-  background: linear-gradient(135deg, #2c2c2c 0%, #1a1a1a 100%);
-  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
-}
-
-.popup-toggle svg {
-  width: 28px;
-  height: 28px;
-  color: #fff;
-}
-
-/* Social Buttons Container */
-.social-buttons {
-  display: flex;
-  flex-direction: column-reverse;
-  gap: 12px;
-}
-
-/* Social Button Base */
-.social-btn {
+/* Contact Button Base */
+.contact-btn {
   position: relative;
   width: 50px;
   height: 50px;
@@ -185,17 +106,17 @@ const socialItems = [
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-.social-btn:hover {
+.contact-btn:hover {
   transform: scale(1.15);
 }
 
-.social-btn :deep(svg) {
+.contact-btn :deep(svg) {
   width: 24px;
   height: 24px;
   fill: currentColor;
 }
 
-.social-btn :deep(svg path) {
+.contact-btn :deep(svg path) {
   fill: currentColor;
 }
 
@@ -207,12 +128,12 @@ const socialItems = [
 
 /* Call Button */
 .btn-call {
-  background: linear-gradient(135deg, #d4af37 0%, #b8860b 100%);
+  background: linear-gradient(135deg, #DAA520 0%, #b8860b 100%);
   color: #fff;
 }
 
 .btn-call:hover {
-  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
+  box-shadow: 0 6px 20px rgba(218, 165, 32, 0.5);
 }
 
 /* Facebook Button */
@@ -283,18 +204,7 @@ const socialItems = [
   border-right: none;
 }
 
-/* Animations */
-.social-btn-enter-active,
-.social-btn-leave-active {
-  transition: all 0.3s ease;
-}
-
-.social-btn-enter-from,
-.social-btn-leave-to {
-  opacity: 0;
-  transform: scale(0.5) translateY(20px);
-}
-
+/* Tooltip Animation */
 .tooltip-enter-active,
 .tooltip-leave-active {
   transition: all 0.2s ease;
@@ -308,28 +218,18 @@ const socialItems = [
 
 /* Responsive */
 @media (max-width: 767px) {
-  .side-popup {
+  .floating-contacts {
     bottom: 20px;
     right: 20px;
     gap: 10px;
   }
 
-  .popup-toggle {
-    width: 55px;
-    height: 55px;
-  }
-
-  .popup-toggle svg {
-    width: 24px;
-    height: 24px;
-  }
-
-  .social-btn {
+  .contact-btn {
     width: 45px;
     height: 45px;
   }
 
-  .social-btn svg {
+  .contact-btn :deep(svg) {
     width: 20px;
     height: 20px;
   }
@@ -340,22 +240,17 @@ const socialItems = [
 }
 
 @media (max-width: 575px) {
-  .side-popup {
+  .floating-contacts {
     bottom: 15px;
     right: 15px;
   }
 
-  .popup-toggle {
-    width: 50px;
-    height: 50px;
-  }
-
-  .social-btn {
+  .contact-btn {
     width: 42px;
     height: 42px;
   }
 
-  .social-buttons {
+  .floating-contacts {
     gap: 8px;
   }
 }

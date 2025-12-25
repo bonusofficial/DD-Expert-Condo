@@ -23,7 +23,7 @@
 
 .banner-swiper .swiper-button-prev:hover,
 .banner-swiper .swiper-button-next:hover {
-    background: #d4af37 !important;
+    background: #DAA520 !important;
 }
 
 .banner-swiper .swiper-button-prev::after,
@@ -54,7 +54,7 @@
 }
 
 .banner-swiper .swiper-pagination-bullet-active {
-    background: #d4af37 !important;
+    background: #DAA520 !important;
     width: 35px !important;
     border-radius: 6px !important;
 }

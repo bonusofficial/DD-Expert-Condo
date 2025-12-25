@@ -132,7 +132,7 @@
 
 .section-tag {
   display: inline-block;
-  background: linear-gradient(135deg, #d4af37 0%, #b8860b 100%);
+  background: linear-gradient(135deg, #DAA520 0%, #b8860b 100%);
   color: #fff;
   padding: 8px 20px;
   border-radius: 30px;
@@ -196,7 +196,7 @@
 .card-icon svg {
   width: 32px;
   height: 32px;
-  color: #d4af37;
+  color: #DAA520;
 }
 
 .card-content {
@@ -302,8 +302,8 @@
 }
 
 .card-btn.primary {
-  background: linear-gradient(135deg, #d4af37 0%, #b8860b 100%);
-  border-color: #d4af37;
+  background: linear-gradient(135deg, #DAA520 0%, #b8860b 100%);
+  border-color: #DAA520;
   color: #fff;
 }
 

@@ -29,7 +29,7 @@ const services = [
   {
     title: 'ทีมงานมืออาชีพ',
     description: 'ทีมงานที่มีประสบการณ์มากกว่า 10 ปี พร้อมให้คำปรึกษาอย่างใกล้ชิด',
-    color: 'linear-gradient(135deg, #d4af37 0%, #b8860b 100%)',
+    color: 'linear-gradient(135deg, #DAA520 0%, #b8860b 100%)',
     icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>',
     stats: { value: '50+', label: 'ทีมงานผู้เชี่ยวชาญ' }
   },
@@ -76,7 +76,7 @@ const services = [
 
 .section-tag {
   display: inline-block;
-  background: linear-gradient(135deg, #d4af37 0%, #b8860b 100%);
+  background: linear-gradient(135deg, #DAA520 0%, #b8860b 100%);
   color: #fff;
   padding: 8px 20px;
   border-radius: 30px;
@@ -122,7 +122,7 @@ const services = [
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, #d4af37, #f4e5b2, #d4af37);
+  background: linear-gradient(90deg, #DAA520, #f4e5b2, #DAA520);
   opacity: 0;
   transition: opacity 0.3s ease;
 }
@@ -174,7 +174,7 @@ const services = [
 .stat-value {
   font-size: 2rem;
   font-weight: 800;
-  color: #d4af37;
+  color: #DAA520;
   line-height: 1;
 }
 
